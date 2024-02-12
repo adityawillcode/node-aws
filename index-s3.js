@@ -26,3 +26,4 @@ return url;
 
 getDataURL('sky.png')
 
+console.log("this is new feat just for some testing");
