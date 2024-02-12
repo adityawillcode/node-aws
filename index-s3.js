@@ -1,4 +1,4 @@
-const {S3Client, GetObjectCommand}  = require("@aws-sdk/client-s3")
+const {S3Client, GetObjectCommand, PutObjectCommand, S3}  = require("@aws-sdk/client-s3")
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner")
 const dotenv=require('dotenv')
 dotenv.config()
@@ -24,6 +24,25 @@ const url=await getSignedUrl(client,command);
 return url;
 }
 
-getDataURL('sky.png')
+// getDataURL('sky.png')
 
-console.log("this is new feat just for some testing");
+// putting object
+
+const putDataURL=async (fileName,contentType)=>{
+    const command=new PutObjectCommand({
+        Bucket:'aditya-rawat-bucket-1',
+        Key:`uploads/${fileName}`,
+        ContentType:contentType
+    })
+    const url=await getSignedUrl(client,command);
+    console.log(url);
+return url
+}
+
+putDataURL(`image-${Date.now()}.png`,"image/png")
+
+
+
+
+
+
